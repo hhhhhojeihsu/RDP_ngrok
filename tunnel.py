@@ -18,7 +18,7 @@ TIMEOUT = 60 * 60 # Interval between restarting a session
 
 
 def main():
-    ngrok = subprocess.Popen([NGROK_LOCATION, RDP_PORT, "3389", "--authtoken", NGROK_TOKEN, "--region", REGION], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    ngrok = subprocess.Popen([NGROK_LOCATION, "tcp", RDP_PORT, "--authtoken", NGROK_TOKEN, "--region", REGION], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     time.sleep(5)
     with requests.session() as s:
         resp = s.get("http://127.0.0.1:4040")
